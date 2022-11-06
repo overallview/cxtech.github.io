@@ -1,0 +1,28 @@
+1下载脚本
+# 创建操作目录
+cd ~ && mkdir -p fisco && cd fisco
+
+## 下载脚本
+curl -#LO https://github.com/FISCO-BCOS/FISCO-BCOS/releases/download/v2.9.1/build_chain.sh && chmod u+x build_chain.sh
+
+
+
+2搭建单群组4节点联盟链
+bash build_chain.sh -l 127.0.0.1:4 -p 30300,20200,8545  
+
+（bash build_chain.sh -l “127.0.0.1:4” -p 30300,20200,8545）
+
+3启动链
+bash nodes/127.0.0.1/start_all.sh
+
+4、检查进程
+ps -ef | grep -v grep | grep fisco-bcos
+
+5、检查日志
+tail -f nodes/127.0.0.1/node0/log/log*  | grep connected
+检查共识
+tail -f nodes/127.0.0.1/node0/log/log*  | grep +++
+
+Please refer to github issue: https://github.com/FISCO-BCOS/java-sdk/issues/536 
+<====> Please refer to fisco-docs: https://fisco-bcos-documentation.readthedocs.io/zh_CN/latest/docs/faq/connect.html 
+----------------------------
